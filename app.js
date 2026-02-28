@@ -8,6 +8,7 @@ const cors = require('cors');
 
 
 
+
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api/index.routes');
 
@@ -20,6 +21,8 @@ app.use(cors({
   exposedHeaders: ['Content-Type', 'Authorization'],
   origin: '*'
 }))
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
