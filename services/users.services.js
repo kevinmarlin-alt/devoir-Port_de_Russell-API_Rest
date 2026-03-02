@@ -1,37 +1,35 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
-exports.getAll = (req, res) => {
-  res.send('Get all users');
-}
+exports.createUser = (data) => {
+    const { username, email, password } = data;
 
-exports.getById = (req, res) => {
-    const userId = req.params.id;
-    res.send(`Get user with id ${userId}`);
-}
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
-exports.create = async (req, res) => {
-    const { username, email, password } = req.body;
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
+    const user = new User({
         username,
         email,
         password: hashedPassword
     });
 
-    await newUser.save();
-
-    res.status(201).json({ message: 'Nouvel utilisateur créé', user: newUser });
+    return user.save();
 }
 
-exports.update = (req, res) => {
-  const userId = req.params.id;
-  res.send(`Update user with id ${userId}`);
+exports.getUserByEmail = (email) => {
+    return User.findOne({ email });
 }
 
-exports.delete = (req, res) => {
-  const userId = req.params.id;
-  res.send(`Delete user with id ${userId}`);
+exports.getAllUsers = () => {
+    return User.find();
+}
+
+exports.updateUser = (email, data) => {
+    if('createdAt' in data) {
+        delete data.createdAt;
+    }
+    return User.findOneAndUpdate({ email }, data, { new: true });
+}
+
+exports.deleteUser = (email) => {
+    return User.findOneAndDelete({ email });
 }
