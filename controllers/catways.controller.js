@@ -1,3 +1,5 @@
+const catwaysServices = require('../services/catways.services');
+
 exports.getAllCatways = async (req, res) => {
   try {
     const catways = await catwaysServices.getAllCatways();
@@ -12,9 +14,9 @@ exports.getAllCatways = async (req, res) => {
 }
 
 
-exports.getById = (req, res) => {
+exports.getCatwayById = async (req, res) => {
   try {
-    const catway = catwaysServices.getCatwayById(req.params.catwayNumber);
+    const catway = await catwaysServices.getCatwayById(req.params.id);
     if (!catway) {
       return res.status(404).json({ message: 'Catway non trouvé' });
     }
@@ -38,7 +40,7 @@ exports.createCatway = async (req, res) => {
   
 exports.updateCatway = async (req, res) => {
   try {
-    const catway = await catwaysServices.updateCatway(req.params.catwayNumber, req.body);
+    const catway = await catwaysServices.updateCatway(req.params.id, req.body);
     if (!catway) {
       return res.status(404).json({ message: 'Catway non trouvé' });
     }
@@ -52,7 +54,7 @@ exports.updateCatway = async (req, res) => {
 exports.deleteCatway = async (req, res) => {
   try {
     
-    const catway = await catwaysServices.deleteCatway(req.params.catwayNumber);
+    const catway = await catwaysServices.deleteCatway(req.params.id);
     if(!catway) {
       return res.status(404).json({ message: 'Catway non trouvé' });
     }

@@ -1,11 +1,11 @@
 const Reservation = require('../models/Reservation');
 
-exports.getAllReservations = (catwayId) => {
-    return Reservation.find({ catwayId });
+exports.getAllReservations = (catwayNumber) => {
+    return Reservation.find({ catwayNumber });
 }
 
-exports.getByIdReservation = (catwayId, reservationId) => {
-    return Reservation.findOne({ catwayId, _id: reservationId });
+exports.getByIdReservation = (catwayNumber, reservationId) => {
+    return Reservation.findOne({ catwayNumber, _id: reservationId });
 }
 
 exports.createReservation = (reservationData) => {
@@ -13,10 +13,10 @@ exports.createReservation = (reservationData) => {
     return reservation.save();
 }
 
-exports.updateReservation = (catwayId, reservationId, reservationData) => {
-    return Reservation.findOneAndUpdate({ catwayId, _id: reservationId }, reservationData, { new: true });
+exports.updateReservation = (catwayNumber, reservationId, reservationData) => {
+    return Reservation.findOneAndUpdate({ catwayNumber, _id: reservationId }, reservationData, { new: true });
 }
 
-exports.deleteReservation = (catwayId, reservationId) => {
-    return Reservation.findOneAndDelete({ catwayId, _id: reservationId });
+exports.deleteReservation = (catwayNumber, reservationId) => {
+    return Reservation.findOneAndDelete({ catwayNumber, _id: reservationId });
 }

@@ -23,6 +23,9 @@ const authenticateController = require('../../controllers/authenticate.controlle
  *                 format: email
  *               password:
  *                 type: string
+ *             example:
+ *               email: "kevinmarlin@russell-port.fr"
+ *               password: "ttJu@72400"
  *     responses:
  *       200:
  *        description: Authentification réussie

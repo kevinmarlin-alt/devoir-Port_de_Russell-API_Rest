@@ -51,7 +51,7 @@ router.get('/', auth, catwaysController.getAllCatways)
  *      500:
  *       description: Erreur lors de la récupération du catway
  */
-router.get('/:id', auth, catwaysController.getById)
+router.get('/:id', auth, catwaysController.getCatwayById)
 
 /**
  * @swagger
@@ -83,6 +83,12 @@ router.post('/', auth, catwaysController.createCatway)
  *   put:
  *     summary: Mettre à jour un catway existant
  *     tags: [Catways]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Catway'
  *     parameters:
  *       - in: path
  *         name: id

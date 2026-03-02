@@ -5,7 +5,7 @@ exports.getAllCatways = () => {
 }
 
 exports.getCatwayById = (catwayNumber) => {
-    return Catway.findOne({ catwayNumber });
+    return Catway.findOne({ catwayNumber: catwayNumber });
 }
 
 exports.createCatway = (data) => {
