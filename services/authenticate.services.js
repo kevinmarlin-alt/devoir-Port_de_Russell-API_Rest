@@ -4,7 +4,7 @@ const User = require('../models/user');
 const jwtConfig = require('../jwt/jwt');
 
 exports.login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     const user = await User.findOne({ email });
     if (!user) {
