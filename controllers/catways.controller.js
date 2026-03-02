@@ -56,7 +56,7 @@ exports.deleteCatway = async (req, res) => {
     if(!catway) {
       return res.status(404).json({ message: 'Catway non trouvé' });
     }
-    res.json({ message: `Catway with number ${req.params.catwayNumber} deleted successfully` });
+    res.status(200).json({ message: 'Catway supprimé avec succès', catway });
 
   } catch (error) {
     res.status(500).json({ message: 'Erreur lors de la suppression du catway', error });

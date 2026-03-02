@@ -1,4 +1,4 @@
-const Catway = require('../models/catway.model');
+const Catway = require('../models/catway');
 
 exports.getAllCatways = () => {
     return Catway.find();

@@ -1,27 +1,22 @@
-exports.getAll = (req, res) => {
-    const catwayId = req.params.id;
-    res.send(`Get all reservations for catway with id ${catwayId}`);
+const Reservation = require('../models/Reservation');
+
+exports.getAllReservations = (catwayId) => {
+    return Reservation.find({ catwayId });
 }
 
-exports.getById = (req, res) => {
-    const catwayId = req.params.id;
-    const reservationId = req.params.idReservation;
-    res.send(`Get reservation with id ${reservationId} for catway with id ${catwayId}`);
+exports.getByIdReservation = (catwayId, reservationId) => {
+    return Reservation.findOne({ catwayId, _id: reservationId });
 }
 
-exports.create = (req, res) => {
-    const catwayId = req.params.id;
-    res.send(`Create a new reservation for catway with id ${catwayId}`);
+exports.createReservation = (reservationData) => {
+    const reservation = new Reservation(reservationData);
+    return reservation.save();
 }
 
-exports.update = (req, res) => {
-    const catwayId = req.params.id;
-    const reservationId = req.params.idReservation;
-    res.send(`Update reservation with id ${reservationId} for catway with id ${catwayId}`);
+exports.updateReservation = (catwayId, reservationId, reservationData) => {
+    return Reservation.findOneAndUpdate({ catwayId, _id: reservationId }, reservationData, { new: true });
 }
 
-exports.delete = (req, res) => {
-    const catwayId = req.params.id;
-    const reservationId = req.params.idReservation;
-    res.send(`Delete reservation with id ${reservationId} for catway with id ${catwayId}`);
+exports.deleteReservation = (catwayId, reservationId) => {
+    return Reservation.findOneAndDelete({ catwayId, _id: reservationId });
 }

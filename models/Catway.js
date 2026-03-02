@@ -18,12 +18,12 @@ const Schema = mongoose.Schema
  *         catwayType:
  *           type: string
  *           enum: [short, long]
- *           description: Type du catway (court ou long)
+ *           description: Type du catway (short ou long)
  *         catwayState:
  *           type: string
  *           description: État du catway (par défaut "bon état")
  */
-const Catway = new Schema({
+const CatwaySchema = new Schema({
     catwayNumber: {
         type: Number,
         required: true,
@@ -42,4 +42,4 @@ const Catway = new Schema({
     }
 })
 
-module.exports = mongoose.model("Catway", Catway)
+module.exports = mongoose.model("Catway", CatwaySchema)
