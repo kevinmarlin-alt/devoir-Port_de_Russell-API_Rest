@@ -1,22 +1,22 @@
-exports.getAll = (req, res) => {
-  res.send('Get all catways');
+const Catway = require('../models/catway.model');
+
+exports.getAllCatways = () => {
+    return Catway.find();
 }
 
-exports.getById = (req, res) => {
-    const catwayId = req.params.id;
-  res.send(`Get catway with id ${catwayId}`);
+exports.getCatwayById = (catwayNumber) => {
+    return Catway.findOne({ catwayNumber });
 }
 
-exports.create = (req, res) => {
-  res.send('Create a new catway');
+exports.createCatway = (data) => {
+    const catway = new Catway(data);
+    return catway.save();
 }
 
-exports.update = (req, res) => {
-  const catwayId = req.params.id;
-  res.send(`Update catway with id ${catwayId}`);
+exports.updateCatway = (catwayNumber, data) => {
+    return Catway.findOneAndUpdate({ catwayNumber }, data, { new: true });
 }
 
-exports.delete = (req, res) => {
-  const catwayId = req.params.id;
-  res.send(`Delete catway with id ${catwayId}`);
+exports.deleteCatway = (catwayNumber) => {
+    return Catway.findOneAndDelete({ catwayNumber });
 }

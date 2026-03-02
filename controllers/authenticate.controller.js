@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-
 const jwtConfig = require('../jwt/jwt');
 
 const authenticateServices = require('../services/authenticate.services');
@@ -23,7 +22,7 @@ exports.login = async (req, res) => {
             { expiresIn: jwtConfig.expiresIn });
     
         res.status(200).json({ message: 'Connexion réussie', token });
-        
+
     } catch (error) {
         res.status(500).json({ message: 'Erreur lors de l\'authentification', error });
     }

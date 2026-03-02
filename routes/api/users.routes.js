@@ -17,7 +17,9 @@ const auth = require('../../middleware/auth.middleware');
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *              type: array
+ *              items:
+ *                 $ref: '#/components/schemas/User'
  *       404:
  *         description: Aucun utilisateur trouvé
  *       500:
