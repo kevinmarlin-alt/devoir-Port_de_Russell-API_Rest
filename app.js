@@ -6,13 +6,18 @@ const logger = require('morgan');
 const mongodb = require('./db/mongo');
 const cors = require('cors');
 
-
+// Import Swagger UI and the generated Swagger specification
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api/index.routes');
 
 const app = express();
+
+// Serve Swagger UI at /api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Initialize MongoDB connection
 mongodb.initClientDbConnection();
